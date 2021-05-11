@@ -1,6 +1,7 @@
 library(tidyr)
 library(dplyr)
 library(ggplot2)
+library(MASS)
 
 # State Data
 ### read in data
@@ -35,6 +36,10 @@ state_data <- insurance_data %>%
 
 sd(state_data$percent_mde) # 1.512508
 
+mde_distribution <- boxplot(state_data$percent_mde,
+        main = "Percent of Youths with > 1 MDE",
+        xlab = "Percent of Youths",
+        horizontal = TRUE)
 
 
 

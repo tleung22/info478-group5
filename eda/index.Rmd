@@ -8,10 +8,14 @@ source("analysis.R")
 ```
 # Exploratory Analysis
 
-```{r stats}
-mean(state_data$percent_mde)
+```{r distribution,}
+boxplot(state_data$percent_mde,
+        main = "Percent of Youths with > 1 MDE",
+        xlab = "Percent of Youths",
+        horizontal = TRUE)
 ```
-In states on average, about 14.20922% of youths have at least one major depressive episode.
+
+As shown above, on average, states have about 14.20922% of youths with at least one major depressive episode.
 
 ```{r coverage_treatment, echo=FALSE}
 plot(coverage_vs_treatment)
