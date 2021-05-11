@@ -3,6 +3,10 @@ title: "index"
 output: html_document
 ---
 
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+source("analysis.R")
+```
+
 # Exploratory Analysis
 
 In states on average, about 14.20922% of youths have at least one major depressive episode.
