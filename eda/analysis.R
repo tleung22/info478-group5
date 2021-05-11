@@ -32,14 +32,14 @@ state_data <- insurance_data %>%
 
 ### graphic
 #### Number no treatment vs Number no coverage
-no_treatment_vs_no_coverage <- ggplot(state_data) +
+coverage_vs_treatment <- ggplot(state_data) +
   geom_point(mapping = aes(x = number_no_coverage, y = number_no_treatment)) +
   labs(title = "No Coverage vs No Treatment",
        x = "Number of Youths without Coverage",
        y = "Number of Youths Who Receive No Treatment") +
   xlim(0, 130000) + 
   ylim(0, 300000)
-cor(state_data$number_no_coverage, state_data$number_no_treatment) # 0.9989021
+coverage_treatment_corr <- cor(state_data$number_no_coverage, state_data$number_no_treatment) # 0.9989021
 ## As the number of youths increases in states, the total number of youths
 ## who do not receive treatment also increases.
 
