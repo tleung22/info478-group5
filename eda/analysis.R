@@ -30,7 +30,12 @@ state_data <- insurance_data %>%
   full_join(no_treatment_data, "State") %>%
   full_join(substance_use_data, "State")
 
-### graphic
+### distribution of variables graphic
+
+
+
+
+### relationship graphic
 #### Number no treatment vs Number no coverage
 coverage_vs_treatment <- ggplot(state_data) +
   geom_point(mapping = aes(x = number_no_coverage, y = number_no_treatment)) +
@@ -42,4 +47,5 @@ coverage_vs_treatment <- ggplot(state_data) +
 coverage_treatment_corr <- cor(state_data$number_no_coverage, state_data$number_no_treatment) # 0.9989021
 ## As the number of youths increases in states, the total number of youths
 ## who do not receive treatment also increases.
+
 

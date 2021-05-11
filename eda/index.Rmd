@@ -1,15 +1,22 @@
 ---
-title: "index"
+title: "Exploratory Analysis"
 output: html_document
 ---
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("analysis.R")
+```
 # Exploratory Analysis
 
+```{r stats}
+mean(state_data$percent_mde)
+```
 In states on average, about 14.20922% of youths have at least one major depressive episode.
 
-```{r coverage_treatment}
+```{r coverage_treatment, echo=FALSE}
 plot(coverage_vs_treatment)
 ```
+  
 In this plot, we compared among states the number of youths whose private
 insurance did not cover mental or emotional problems to the number of youths
 with MDE who did not receive any mental health services.
