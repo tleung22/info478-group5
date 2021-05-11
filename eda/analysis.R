@@ -8,6 +8,7 @@ insurance_data <- read.csv("./data/insurance_no_coverage.csv")
 mde_data <- read.csv("./data/youths_with_at_least_one_mde.csv")
 no_treatment_data <- read.csv("./data/no_treatment.csv")
 substance_use_data <- read.csv("./data/substance_use_disorders.csv")
+patient_data <- read.csv("./data/patient_char_survey_2015.csv")
 
 ### change column names
 insurance_data <- rename(insurance_data, rank_no_coverage = Rank,
@@ -31,6 +32,8 @@ state_data <- insurance_data %>%
   full_join(substance_use_data, "State")
 
 ### distribution of variables graphic
+
+sd(state_data$percent_mde) # 1.512508
 
 
 

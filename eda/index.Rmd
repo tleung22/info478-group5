@@ -2,8 +2,8 @@
 title: "Exploratory Analysis"
 output: html_document
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
 source("analysis.R")
 ```
 # Exploratory Analysis
