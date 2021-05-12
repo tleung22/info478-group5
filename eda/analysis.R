@@ -31,6 +31,50 @@ state_data <- insurance_data %>%
   full_join(no_treatment_data, "State") %>%
   full_join(substance_use_data, "State")
 
+### filter patient data
+child_patient_female_data <- patient_data %>% 
+  group_by(Age.Group, Sex, Serious.Mental.Illness) %>%
+  filter(Age.Group == "CHILD") %>%
+  filter(Serious.Mental.Illness == "YES") %>% 
+  filter(Sex == "FEMALE") %>% 
+  summarise(Serious.Mental.Illness) %>% 
+  count(Serious.Mental.Illness)
+
+child_patient_male_data <- patient_data %>% 
+  group_by(Age.Group, Sex, Serious.Mental.Illness) %>%
+  filter(Age.Group == "CHILD") %>%
+  filter(Serious.Mental.Illness == "YES") %>% 
+  filter(Sex == "MALE") %>% 
+  summarise(Serious.Mental.Illness) %>% 
+  count(Serious.Mental.Illness)
+
+child_patient_data <- rbind(child_patient_female_data, child_patient_male_data)
+
+
+### male vs female distribution
+male_vs_female_count <- ggplot(child_patient_data) +
+  geom_col(mapping = aes(x = Sex, y = n, fill = Sex)) +
+  labs(title = "Comparison of Male Mental Illness Patients to Female Patients
+       under 17 years old in 2015",
+       x = "Sex",
+       y = "Number of Mental Illness Patients"
+  )
+
+### relationship graph
+
+substance_use_ranking <- state_data %>% 
+  arrange(state_data, percent_substance_use) %>% 
+  top_n(10, percent_substance_use)
+  
+  
+substance_use_ranking_chart<- ggplot(substance_use_ranking) +
+  geom_col(mapping = aes(x = State, y = percent_substance_use)) +
+  labs(title = "Top 10 States with Highest Percentage of Substance Use for
+       Mental Illnesses in 2021",
+       x = "State",
+       y = "Percentage of Youths Who Use Substances") +
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))
+
 ### graphic
 #### Number no treatment vs Number no coverage
 coverage_vs_treatment <- ggplot(state_data) +
@@ -43,4 +87,6 @@ coverage_vs_treatment <- ggplot(state_data) +
 coverage_treatment_corr <- cor(state_data$number_no_coverage, state_data$number_no_treatment) # 0.9989021
 ## As the number of youths increases in states, the total number of youths
 ## who do not receive treatment also increases.
+
+
 
