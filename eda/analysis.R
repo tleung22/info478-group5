@@ -71,11 +71,11 @@ substance_use_ranking <- state_data %>%
   
 substance_use_ranking_chart<- ggplot(substance_use_ranking) +
   geom_col(mapping = aes(x = State, y = percent_substance_use)) +
-  labs(title = "Top 10 States with Highest Percentage of Substance Use for
+  labs(title = "Top 10 States with Highest Percentage of Substance Use in Youths for
        Mental Illnesses in 2021",
        x = "State",
-       y = "Percentage of Youths Who Use Substances") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2))
+       y = "Percentage of Substance Use") +
+       theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1, size = 7))
 
 ### graphic
 

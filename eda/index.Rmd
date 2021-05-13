@@ -5,8 +5,12 @@ output: html_document
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 source("analysis.R")
+library(ggplot2)
+library(dplyr)
 ```
 # Exploratory Analysis
+
+## Distribution Graphs 
 
 ```{r distribution,}
 boxplot(state_data$percent_mde,
@@ -17,6 +21,14 @@ boxplot(state_data$percent_mde,
 
 As shown above, on average, states have about 14.20922% of youths with at least one major depressive episode.
 
+```{r distribution2,}
+plot(male_vs_female_count)
+```
+
+The number of male mental illness patients under 17 is higher than females by a significant amount. This can lead to a further discussion of factors leading to higher mental health illness patients in males. 
+
+## Relationship Graphs 
+
 ```{r coverage_treatment, echo=FALSE}
 plot(coverage_vs_treatment)
 ```
@@ -24,3 +36,8 @@ plot(coverage_vs_treatment)
 In this plot, we compared among states the number of youths whose private
 insurance did not cover mental or emotional problems to the number of youths
 with MDE who did not receive any mental health services.
+
+```{r}
+plot(substance_use_ranking_chart) 
+```
+In this graph, we compared the percentage of substance use in the top 10 states with the highest percentage of substance use in youths (under age 17). The highest percentage of substance use is from Vermont, while the lowest of the top 10 states is Oregon. 
