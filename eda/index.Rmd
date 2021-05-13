@@ -8,20 +8,24 @@ source("analysis.R")
 library(ggplot2)
 library(dplyr)
 ```
-# Exploratory Analysis
 
 ## Distribution Graphs 
 
-```{r distribution,}
+```{r distribution, echo=FALSE}
 boxplot(state_data$percent_mde,
         main = "Percent of Youths with > 1 MDE",
         xlab = "Percent of Youths",
         horizontal = TRUE)
 ```
 
-As shown above, on average, states have about 14.20922% of youths with at least one major depressive episode.
+This boxplot shows the distribution of the percantages of youths with at least 
+one major depressive episode. On average, states have about 14.20922% of youths 
+with at least one MDE, and the interquartile range consists of about 13.2% to 
+about 15.2%. The full range goes from 11.40% to 17.57%. This data can be used to 
+understand the distribution and average percent of youths with at least one 
+MDE in all the states.
 
-```{r distribution2,}
+```{r distribution2, echo=FALSE}
 plot(male_vs_female_count)
 ```
 
@@ -34,10 +38,13 @@ plot(coverage_vs_treatment)
 ```
   
 In this plot, we compared among states the number of youths whose private
-insurance did not cover mental or emotional problems to the number of youths
-with MDE who did not receive any mental health services.
+insurance plans did not cover mental or emotional problems to the number of youths
+with MDE who did not receive any mental health services. As shown by the scatter plot,
+there is a strong positive linear relationship between the two variables,
+with a correlation value of 0.9622.
 
-```{r}
+```{r, echo=FALSE}
 plot(substance_use_ranking_chart) 
 ```
+
 In this graph, we compared the percentage of substance use in the top 10 states with the highest percentage of substance use in youths (under age 17). The highest percentage of substance use is from Vermont, while the lowest of the top 10 states is Oregon. 

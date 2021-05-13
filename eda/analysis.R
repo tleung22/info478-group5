@@ -3,12 +3,13 @@ library(dplyr)
 library(ggplot2)
 library(MASS)
 
-# State Data
-### read in data
+# read in data
+### state data
 insurance_data <- read.csv("./data/insurance_no_coverage.csv")
 mde_data <- read.csv("./data/youths_with_at_least_one_mde.csv")
 no_treatment_data <- read.csv("./data/no_treatment.csv")
 substance_use_data <- read.csv("./data/substance_use_disorders.csv")
+### patient data
 patient_data <- read.csv("./data/patient_char_survey_2015.csv")
 
 ### change column names
@@ -52,7 +53,6 @@ child_patient_male_data <- patient_data %>%
 
 child_patient_data <- rbind(child_patient_female_data, child_patient_male_data)
 
-
 ### male vs female distribution
 male_vs_female_count <- ggplot(child_patient_data) +
   geom_col(mapping = aes(x = Sex, y = n, fill = Sex)) +
@@ -62,12 +62,10 @@ male_vs_female_count <- ggplot(child_patient_data) +
        y = "Number of Mental Illness Patients"
   )
 
-### relationship graph
-
+### relationship graph substance use
 substance_use_ranking <- state_data %>% 
   arrange(state_data, percent_substance_use) %>% 
   top_n(10, percent_substance_use)
-  
   
 substance_use_ranking_chart<- ggplot(substance_use_ranking) +
   geom_col(mapping = aes(x = State, y = percent_substance_use)) +
@@ -77,22 +75,7 @@ substance_use_ranking_chart<- ggplot(substance_use_ranking) +
        y = "Percentage of Substance Use") +
        theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1, size = 7))
 
-### graphic
-
-### distribution of variables graphic
-
-sd(state_data$percent_mde) # 1.512508
-
-mde_distribution <- boxplot(state_data$percent_mde,
-        main = "Percent of Youths with > 1 MDE",
-        xlab = "Percent of Youths",
-        horizontal = TRUE)
-
-
-
-### relationship graphic
-
-#### Number no treatment vs Number no coverage
+### relationship graph coverage vs treatment
 coverage_vs_treatment <- ggplot(state_data) +
   geom_point(mapping = aes(x = number_no_coverage, y = number_no_treatment)) +
   labs(title = "No Coverage vs No Treatment",
