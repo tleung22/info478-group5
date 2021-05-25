@@ -51,41 +51,49 @@ child_patient_male_data <- patient_data %>%
   summarise(Serious.Mental.Illness) %>% 
   count(Serious.Mental.Illness)
 
-child_patient_data <- rbind(child_patient_female_data, child_patient_male_data)
+child_patient_data <- rbind(child_patient_female_data, child_patient_male_data) %>% 
+  mutate(proportion = n/35865)
+
+proportion_data <- patient_data %>% 
+  filter(Age.Group == "CHILD") %>% 
+  nrow()
+#35865 
 
 ### male vs female distribution
-male_vs_female_count <- ggplot(child_patient_data) +
-  geom_col(mapping = aes(x = Sex, y = n, fill = Sex)) +
+male_vs_female_proportion <- ggplot(child_patient_data) +
+  geom_col(mapping = aes(x = Sex, y = proportion, fill = Sex)) +
   labs(title = "Comparison of Male Mental Illness Patients to Female Patients
        under 17 years old in 2015",
        x = "Sex",
-       y = "Number of Mental Illness Patients"
-  )
+       y = "Proportion of Mental Illness Patients")
 
+plot(male_vs_female_count)
 ### relationship graph substance use
 substance_use_ranking <- state_data %>% 
   arrange(state_data, percent_substance_use) %>% 
   top_n(10, percent_substance_use)
   
 substance_use_ranking_chart<- ggplot(substance_use_ranking) +
-  geom_col(mapping = aes(x = State, y = percent_substance_use)) +
+  geom_col(mapping = aes(x = reorder(State, -percent_substance_use), y = percent_substance_use)) +
   labs(title = "Top 10 States with Highest Percentage of Substance Use in Youths for
        Mental Illnesses in 2021",
        x = "State",
        y = "Percentage of Substance Use") +
-       theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1, size = 7))
+       theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1, size = 7)) 
 
 ### relationship graph coverage vs treatment
 coverage_vs_treatment <- ggplot(state_data) +
   geom_point(mapping = aes(x = number_no_coverage, y = number_no_treatment)) +
+  geom_smooth(aes(x =number_no_coverage, y = number_no_treatment),method='lm') +
   labs(title = "No Coverage vs No Treatment",
        x = "Number of Youths without Coverage",
        y = "Number of Youths Who Receive No Treatment") +
   xlim(0, 130000) + 
-  ylim(0, 300000)
+  ylim(0, 300000) 
+  
+
 coverage_treatment_corr <- cor(state_data$number_no_coverage, state_data$number_no_treatment) # 0.9989021
 ## As the number of youths increases in states, the total number of youths
 ## who do not receive treatment also increases.
-
-
+plot(coverage_vs_treatment)
 
