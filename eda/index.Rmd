@@ -9,6 +9,8 @@ library(ggplot2)
 library(dplyr)
 ```
 
+#### By Daniel Miau, Chloe Lee, Angela Pak, and Trevor Leung (Group 5)
+
 ## Distribution Graphs 
 
 ```{r distribution, echo=FALSE}
