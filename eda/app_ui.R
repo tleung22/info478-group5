@@ -58,18 +58,23 @@ child_patient_data <- rbind(child_patient_female_data, child_patient_male_data) 
 
 # Define Widgets (shiny widget library here)
 
-#checkbox 
-state_input <- checkboxInput(
-  inputId = "show_state",
-  label = "State",
-  value = TRUE
-)
+#drop down menu   
 
-color_input <- checkboxInput(
-  inputId = "show_color",
-  label = "Color",
-  value = TRUE
-)
+sex_input <- selectInput("Sex",
+label = h3("Sex"),
+choices = child_patient_data$Sex, 
+selected = "Male") 
+
+
+color_input <- selectInput("color_id",
+            label = h3("Color"),
+            choices = brewer.pal(8, "Set2"))
+
+state_input <- selectInput("State",
+            label = h3("State"),
+            choices = state_data$State,
+            selected = "Washington")
+
 
 # Define structure of tabs (aka pages) -- must make 2 tabs
 intro_panel <- tabPanel( 
@@ -149,15 +154,8 @@ page_one <- tabPanel(
   sidebarLayout(             
     sidebarPanel(
       p("Select your viewing options!"),
-      selectInput("Sex",
-                  label = h3("Sex"),
-                  choices = child_patient_data$Sex, 
-                  selected = "Male"
-      ),
-      selectInput("color_id",
-                  label = h3("Color"),
-                  choices = brewer.pal(8, "Set2")
-      )
+      sex_input,
+      color_input
       # left side of the page 
       # insert widgets or text here -- their variable name(s), NOT the raw code
     ),           
@@ -176,15 +174,8 @@ page_two <- tabPanel(
   sidebarLayout(
     sidebarPanel(
       p("Select your viewing options!"),
-      selectInput("State",
-                  label = h3("State"),
-                  choices = state_data$State,
-                  selected = "Washington"
-      ),
-      selectInput("color_id2",
-                  label = h3("Color"),
-                  choices = brewer.pal(8, "Set2")
-      )
+      state_input,
+      color_input
     ),
     mainPanel(
       plotlyOutput(outputId = "state_data"),
