@@ -88,17 +88,14 @@ intro_panel <- tabPanel(
   ), 
   
   # hyperlink for research 
-  p( 
-    "Our", 
     p(
       "Our research background was found on ", 
       a(
-        href = "https://journals.sagepub.com/doi/pdf/10.1177/2158244015581019", "SAGE"
+        href = "https://journals.sagepub.com/doi/pdf/10.1177/2158244015581019", "SAGE,"
       ), 
       a(
-        href = "https://www.frontiersin.org/articles/10.3389/fpsyt.2019.00595/full", "Frontiers in Psychiatry",
-        "and,"
-      ),
+        href = "https://www.frontiersin.org/articles/10.3389/fpsyt.2019.00595/full", "Frontiers in Psychiatry,"),
+        "and,",
       a(
         href = "https://www.statnews.com/2020/06/17/cliff-teens-mental-health-transition-adulthood/", "STAT"
       )
@@ -144,8 +141,7 @@ intro_panel <- tabPanel(
       "Our Youth Data 2021 dataset was found on",
       a(
         href = "https://mhanational.org/issues/2021/mental-health-america-youth-data#eight", "MHA",
-        "and,"
-      )))))
+      ))))
       
 page_one <- tabPanel(
   "Page 1",             #title of the page, what will appear as the tab name
@@ -201,6 +197,7 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
   navbarPage(
     inverse = TRUE,
     "Title",
+    intro_panel, 
     page_one,
     page_two
   #insert other pages here
