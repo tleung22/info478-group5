@@ -71,7 +71,82 @@ color_input <- checkboxInput(
 )
 
 # Define structure of tabs (aka pages) -- must make 2 tabs
+intro_panel <- tabPanel( 
+  title = "Introduction",
+  titlePanel("INFO 478 Final Deliverable: Mental Health In Children"),
+  h4("Created by Chloe Lee, Angela Pak, Trevor Leung, Daniel Miau"),
+  
+  # Introduction of our app 
+  p(
+    "The purpose of our research project is to conceptualize a digital resource for helping 
+    teenagers struggling with mental health problems and concerns navigate through the confusing 
+    mental health care system to find help that is most suited to their needs. To supply this resource, 
+    we are investigating the problem areas associated with this topic by finding correlations between 
+    youth mental health and other factors such as school and social demographics. We plan to highlight 
+    problem areas through visualizations that reveal patterns and assist in gaining knowledge of how to 
+    properly address mental health problems in youth."
+  ), 
+  
+  # hyperlink for research 
+  p( 
+    "Our", 
+    p(
+      "Our research background was found on ", 
+      a(
+        href = "https://journals.sagepub.com/doi/pdf/10.1177/2158244015581019", "SAGE"
+      ), 
+      a(
+        href = "https://www.frontiersin.org/articles/10.3389/fpsyt.2019.00595/full", "Frontiers in Psychiatry",
+        "and,"
+      ),
+      a(
+        href = "https://www.statnews.com/2020/06/17/cliff-teens-mental-health-transition-adulthood/", "STAT"
+      )
+  ),
+  
+  
+  p(
+    "After reviewing these three articles about the mental health situation in youth, the articles
+    described many of the same concerns for the worsening mental health for youth in the U.S. 
+    Although the U.S mental health system for youth has been transitioning to more early intervention
+    programs and accessible technology resources, the system does not prepare teenagers and young adults 
+    for navigating mental health care in the future. In response, the articles explore suggested solutions 
+    by teenagers and young adults. Many of the responders emphasized that they would like digital tools for
+    mental health that are personalized for their needs and not necessarily in a one-size-fits-all format. 
+    Also, in the SAGE research article, teenage participants preferred mental health solutions that can be 
+    done on their phone and do not involve any social media relationship between themselves and their mental 
+    health clinician."
+  ), 
+  
 
+  p(
+    "In the Frontiers article, a digital mental health platform that was described is the Innowell Platform. 
+    The Platform assists with the assessment, feedback, management, and monitoring of their mental ill health 
+    and maintenance of well-being by collecting personal and health information from a young person, their clinician(s), 
+    and supportive others. This information is stored, scored, and reported back to the young person, their clinicians, 
+    and the service provider to promote genuine collaborative care. The clinical content is determined by the health service 
+    who invites the young person to use the Platform. The Innowell Platform does not provide stand-alone medical or health advice,
+    risk assessment, clinical diagnosis, or treatment. Instead, it guides and supports (but does not direct) young people and their
+    clinicians to decide what may be suitable care options. Importantly, all care aligns with the existing clinical governance 
+    (e.g., policies and procedures) of the service provider."
+  ),
+  
+  p("The Platform facilitates personalized and measurement-based care within a mental health service by enhancing key processes, 
+    which themselves may not be new, but their combined use and integration with face-to-face services is."),
+    
+    # hyperlink for dataset 
+    p(
+      "Our Patient Characteristics Survey dataset was found on ", 
+      a(
+        href = "https://catalog.data.gov/dataset/patient-characteristics-survey-pcs-2015", "Data.gov."),
+      
+    p(
+      "Our Youth Data 2021 dataset was found on",
+      a(
+        href = "https://mhanational.org/issues/2021/mental-health-america-youth-data#eight", "MHA",
+        "and,"
+      )))))
+      
 page_one <- tabPanel(
   "Page 1",             #title of the page, what will appear as the tab name
   sidebarLayout(             
