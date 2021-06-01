@@ -20,7 +20,7 @@ boxplot(state_data$percent_mde,
         horizontal = TRUE)
 ```
 
-This boxplot shows the distribution of the percantages of youths with at least 
+This boxplot shows the distribution of the percentages of youths with at least 
 one major depressive episode. On average, states have about 14.20922% of youths 
 with at least one MDE, and the interquartile range consists of about 13.2% to 
 about 15.2%. The full range goes from 11.40% to 17.57%. This data can be used to 

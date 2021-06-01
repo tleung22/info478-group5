@@ -5,6 +5,7 @@ library(lintr)
 library(styler)
 library(RColorBrewer)
 library(shinythemes)
+
 # read in the data set 
 
 insurance_data <- read.csv("./data/insurance_no_coverage.csv")
@@ -150,7 +151,7 @@ page_one <- tabPanel(
       p("Select your viewing options!"),
       selectInput("Sex",
                   label = h3("Sex"),
-                  choices = child_patient_data$Sex,
+                  choices = child_patient_data$Sex, 
                   selected = "Male"
       ),
       selectInput("color_id",
@@ -163,9 +164,12 @@ page_one <- tabPanel(
     mainPanel(
       plotlyOutput(outputId = "child_patient_data"),# typically where you place your plots + texts
       # insert chart and/or text here -- the variable name NOT the code
+      br(),
+      br(),
+      p("The number of male mental illness patients under 17 is higher than females by a significant amount. This can lead to a further discussion of factors leading to higher mental health illness patients in males.")
     )
   )
-)
+  )
 
 page_two <- tabPanel(
   "Page 2",
@@ -183,9 +187,11 @@ page_two <- tabPanel(
       )
     ),
     mainPanel(
-      plotlyOutput(outputId = "state_data")
-    )
-  )
+      plotlyOutput(outputId = "state_data"),
+      br(),
+      br(),
+    p( "In this graph, we compared the percentage of substance use in the top 10 states with the highest percentage of substance use in youths (under age 17). The highest percentage of substance use is from Vermont, while the lowest of the top 10 states is Oregon.")
+  ))
 )
 
 
@@ -196,10 +202,11 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
   h3("Created by Chloe Lee, Angela Pak, Trevor Leung, Daniel Miau"),
   navbarPage(
     inverse = TRUE,
-    "Title",
+    "",
     intro_panel, 
     page_one,
     page_two
   #insert other pages here
   )
 )
+
