@@ -57,6 +57,19 @@ child_patient_data <- rbind(child_patient_female_data, child_patient_male_data) 
 
 # Define Widgets (shiny widget library here)
 
+#checkbox 
+state_input <- checkboxInput(
+  inputId = "show_state",
+  label = "State",
+  value = TRUE
+)
+
+color_input <- checkboxInput(
+  inputId = "show_color",
+  label = "Color",
+  value = TRUE
+)
+
 # Define structure of tabs (aka pages) -- must make 2 tabs
 
 page_one <- tabPanel(
