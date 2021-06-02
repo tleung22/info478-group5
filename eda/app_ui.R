@@ -56,24 +56,18 @@ child_patient_male_data <- patient_data %>%
 child_patient_data <- rbind(child_patient_female_data, child_patient_male_data) %>% 
   mutate(proportion = n/35865)
 
+coverage_input <- radioButtons(inputId = "trendline_choice",
+                               label = "Trendline",
+                               choices = list("With Trendline" = "Y",
+                                              "Without Trendline" = "N"))
+
+state_input <- checkboxGroupInput("State",
+                                  label = h3("State"),
+                                  choices = substance_use_ranking$State,
+                                  selected = "Washington")
 # Define Widgets (shiny widget library here)
 
 #drop down menu   
-
-sex_input <- selectInput("Sex",
-label = h3("Sex"),
-choices = child_patient_data$Sex, 
-selected = "Male") 
-
-
-color_input <- selectInput("color_id",
-            label = h3("Color"),
-            choices = brewer.pal(8, "Set2"))
-
-state_input <- selectInput("State",
-            label = h3("State"),
-            choices = state_data$State,
-            selected = "Washington")
 
 
 # Define structure of tabs (aka pages) -- must make 2 tabs
@@ -148,44 +142,43 @@ intro_panel <- tabPanel(
       a(
         href = "https://mhanational.org/issues/2021/mental-health-america-youth-data#eight", "MHA",
       ))))
-      
+
 page_one <- tabPanel(
   "Page 1",             #title of the page, what will appear as the tab name
   sidebarLayout(             
     sidebarPanel(
       p("Select your viewing options!"),
-      sex_input,
-      color_input
-      # left side of the page 
-      # insert widgets or text here -- their variable name(s), NOT the raw code
-    ),           
+      coverage_input
+      ),
     mainPanel(
-      plotlyOutput(outputId = "child_patient_data"),# typically where you place your plots + texts
+      plotlyOutput(outputId = "coverage_data"),# typically where you place your plots + texts
       # insert chart and/or text here -- the variable name NOT the code
       br(),
       br(),
-      p("The number of male mental illness patients under 17 is higher than females by a significant amount. This can lead to a further discussion of factors leading to higher mental health illness patients in males.")
+      p("The number of male mental illness patients under 17 is higher than 
+        females by a significant amount. This can lead to a further discussion 
+        of factors leading to higher mental health illness patients in males.")
     )
   )
-  )
+)
+
 
 page_two <- tabPanel(
   "Page 2",
   sidebarLayout(
     sidebarPanel(
-      p("Select your viewing options!"),
-      state_input,
-      color_input
-    ),
+      p("Top 10 States"),
+      state_input
+      ),
     mainPanel(
       plotlyOutput(outputId = "state_data"),
-      br(),
-      br(),
-    p( "In this graph, we compared the percentage of substance use in the top 10 states with the highest percentage of substance use in youths (under age 17). The highest percentage of substance use is from Vermont, while the lowest of the top 10 states is Oregon.")
-  ))
+      p("In this graph, we compared the percentage of substance use in the top 10
+      states with the highest percentage of substance use in youths 
+      (under age 17). The highest percentage of substance use is from Vermont, 
+      while the lowest of the top 10 states is Wyoming.")
+    )
+  )
 )
-
-
 
 # Define the UI and what pages/tabs go into it
 ui <- fluidPage(theme = shinytheme("cerulean"),

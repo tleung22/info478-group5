@@ -98,32 +98,47 @@ coverage_treatment_corr <- cor(state_data$number_no_coverage, state_data$number_
 
 # Define the server
 server <- function(input, output) {
-  output$child_patient_data <- renderPlotly({
-    child_patient_data_updated <- child_patient_data %>%
-      filter(Sex == input$Sex)
+  output$coverage_data <- renderPlotly({
+    with_trendline <- input$trendline_choice
     
-    chart1 <- ggplot(child_patient_data_updated) +
-      geom_col(mapping = aes(x = Sex, y = proportion, fill = input$color_id)) +
-      labs(title = "Comparison of Male Mental Illness Patients to Female 
-      Patients under 17 years old in 2015",
-           x = "Sex",
-           y = "Proportion of Mental Illness Patients")
+    if (with_trendline == "N") {
+      chart1 <- ggplot(state_data) +
+        geom_point(mapping = aes(x = number_no_coverage, y = number_no_treatment)) +
+        labs(title = "No Coverage vs No Treatment",
+             x = "Number of Youths without Coverage",
+             y = "Number of Youths Who Receive No Treatment") +
+        xlim(0, 130000) + 
+        ylim(0, 300000)
+    }
+
+    else {
+      chart1_with_tl <- ggplot(state_data) +
+        geom_point(mapping = aes(x = number_no_coverage, y = number_no_treatment)) +
+        geom_smooth(mapping = aes(x =number_no_coverage, y = number_no_treatment), method='lm') +
+        labs(title = "No Coverage vs No Treatment",
+             x = "Number of Youths without Coverage",
+             y = "Number of Youths Who Receive No Treatment") +
+        xlim(0, 130000) + 
+        ylim(0, 300000)
+    }
   })
   
   output$state_data <- renderPlotly({
-    state_data_updated <- state_data %>% 
-      filter(State == input$State)
+    state_data_updated <- substance_use_ranking %>%
+      filter(is.element(substance_use_ranking$State, input$State))
     
     chart2 <- ggplot(state_data_updated) +
       geom_col(mapping = aes(x = reorder(State, -percent_substance_use),
-                             y = percent_substance_use, fill = input$color_id2)) +
-      labs(title = "Top 10 States with Highest Percentage of Substance Use 
-      in Youths for Mental Illnesses in 2021",
+                             y = percent_substance_use, fill = State)) +
+      scale_color_brewer(palette = "Set3") +
+      scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
+      labs(title = " Highest Percentage of Substance Use in Youths for Mental 
+           Illnesses in 2021",
            x = "State",
-           y = "Percentage of Substance Use") +
+           y = "Percentage of Substance Use",
+           color = "State") +
       theme(axis.text.x = element_text(angle = 45, vjust = 0.5,
                                        hjust=1, size = 7))
-      
   })
   
   
@@ -133,4 +148,3 @@ server <- function(input, output) {
   # insert code for chart here        
   
 }
-
