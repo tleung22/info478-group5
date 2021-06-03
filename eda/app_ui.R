@@ -1,8 +1,7 @@
 library(shiny)
 library(tidyverse)
+library(dplyr)
 library(plotly)
-library(lintr)
-library(styler)
 library(RColorBrewer)
 library(shinythemes)
 
