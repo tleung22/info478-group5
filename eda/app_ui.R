@@ -185,8 +185,8 @@ page_two <- tabPanel(
       while the lowest of the top 10 states is Wyoming. This data can be used to
       identify the states in which substance use is the largest, and can also be 
       compared to data about mental illnesses or substance laws, to see if there 
-      is a relationship between the different factors. Hover over the bars to 
-      see the exact percentages.")
+      is a relationship between the different factors. Select the states you want 
+      to compare, and hover over the bars to see the exact percentages.")
     )
   )
 )
