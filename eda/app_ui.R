@@ -154,9 +154,17 @@ page_one <- tabPanel(
       # insert chart and/or text here -- the variable name NOT the code
       br(),
       br(),
-      p("The number of male mental illness patients under 17 is higher than 
-        females by a significant amount. This can lead to a further discussion 
-        of factors leading to higher mental health illness patients in males.")
+      p("This graph plots the number of youths in each state whose private insurance 
+      does not include mental health, and the number of youths in each state with at 
+      least one Major Depressive Episode who received no treatment. Each point 
+      represents a state. Click the options next to the plot to show or hide 
+      the trendline, and hover over the points to view the exact numbers."),
+      p("This graph reveals a correlation value of 0.9622, as shown by the trendline, 
+      meaning that there is a strong positive correlation between the number of 
+      youths with no insurance coverage for mental health, and the number of youths 
+      who receive no treatment. Based on this data, further research should be conducted 
+      to determine whether expanding insurance coverage to mental health will lead to 
+      more treatment for youths.")
     )
   )
 )
@@ -174,7 +182,11 @@ page_two <- tabPanel(
       p("In this graph, we compared the percentage of substance use in the top 10
       states with the highest percentage of substance use in youths 
       (under age 17). The highest percentage of substance use is from Vermont, 
-      while the lowest of the top 10 states is Wyoming.")
+      while the lowest of the top 10 states is Wyoming. This data can be used to
+      identify the states in which substance use is the largest, and can also be 
+      compared to data about mental illnesses or substance laws, to see if there 
+      is a relationship between the different factors. Hover over the bars to 
+      see the exact percentages.")
     )
   )
 )
